@@ -1,10 +1,12 @@
-var buttonColours = ["red", "blue", "green", "yellow"];
+var buttonColours = ["red", "blue", "green", "yellow"]; //names of the id
 
 var gamePattern = [];
 var userClickedPattern = [];
 
 var started = false;
 var level = 0;
+
+//we use triple equal to signs to check value along with data type also
 
 let startBtn = document.querySelector("#start-btn")
 
@@ -29,7 +31,7 @@ $(".btn").click(function() {
   var userChosenColour = $(this).attr("id");
   userClickedPattern.push(userChosenColour);
 
-  // playSound(userChosenColour);
+  
   animatePress(userChosenColour);
 
   checkAnswer(userClickedPattern.length-1);
@@ -51,7 +53,7 @@ function checkAnswer(currentLevel) {
 
       console.log("wrong");
 
-      // playSound("wrong");
+      
 
       $("body").addClass("game-over");
       setTimeout(function () {
@@ -69,21 +71,21 @@ function checkAnswer(currentLevel) {
 function nextSequence() {
 
   userClickedPattern = [];
-  level++;
+  level++;   //orlevel+=1
   $("#level-title").text("Level " + level);
 
   var randomNumber = Math.floor(Math.random() * 4);
   var randomChosenColour = buttonColours[randomNumber];
   gamePattern.push(randomChosenColour);
+  //we have to make the userclickpattern array empty everytime we click
+  //console.log(gamePattern)
+  //console.log(level)
 
   $("#" + randomChosenColour).fadeIn(200).fadeOut(200).fadeIn(200);
-  // playSound(randomChosenColour);
+  
 }
 
-// function playSound(name) {
-//   var audio = new Audio("sounds/" + name + ".mp3");
-//   audio.play();
-// }
+
 
 function animatePress(currentColor) {
   $("#" + currentColor).addClass("pressed");
